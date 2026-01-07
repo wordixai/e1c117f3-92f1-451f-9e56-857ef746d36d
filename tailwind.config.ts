@@ -52,16 +52,18 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				sidebar: {
-					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))'
-				}
+				pop: {
+					orange: 'hsl(var(--pop-orange))',
+					pink: 'hsl(var(--pop-pink))',
+					yellow: 'hsl(var(--pop-yellow))',
+					cyan: 'hsl(var(--pop-cyan))',
+					black: 'hsl(var(--pop-black))',
+				},
+			},
+			fontFamily: {
+				display: ['Bangers', 'cursive'],
+				hand: ['Permanent Marker', 'cursive'],
+				body: ['Comic Neue', 'cursive'],
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -70,26 +72,44 @@ export default {
 			},
 			keyframes: {
 				'accordion-down': {
-					from: {
-						height: '0'
-					},
-					to: {
-						height: 'var(--radix-accordion-content-height)'
-					}
+					from: { height: '0' },
+					to: { height: 'var(--radix-accordion-content-height)' }
 				},
 				'accordion-up': {
-					from: {
-						height: 'var(--radix-accordion-content-height)'
-					},
-					to: {
-						height: '0'
-					}
-				}
+					from: { height: 'var(--radix-accordion-content-height)' },
+					to: { height: '0' }
+				},
+				bounce: {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-8px)' },
+				},
+				wiggle: {
+					'0%, 100%': { transform: 'rotate(-3deg)' },
+					'50%': { transform: 'rotate(3deg)' },
+				},
+				pop: {
+					'0%': { transform: 'scale(1)' },
+					'50%': { transform: 'scale(1.05)' },
+					'100%': { transform: 'scale(1)' },
+				},
+				float: {
+					'0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
+					'50%': { transform: 'translateY(-10px) rotate(2deg)' },
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
-			}
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				bounce: 'bounce 0.6s ease-in-out infinite',
+				wiggle: 'wiggle 0.5s ease-in-out infinite',
+				pop: 'pop 0.3s ease-in-out',
+				float: 'float 3s ease-in-out infinite',
+			},
+			boxShadow: {
+				pop: '6px 6px 0 hsl(var(--pop-black))',
+				'pop-lg': '8px 8px 0 hsl(var(--pop-black))',
+				'pop-hover': '10px 10px 0 hsl(var(--pop-black))',
+			},
 		}
 	},
 	plugins: [require("tailwindcss-animate")],

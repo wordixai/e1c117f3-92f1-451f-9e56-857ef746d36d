@@ -1,0 +1,26 @@
+{
+  "cachedStatsigGates": {
+    "tengu_prompt_suggestion": true
+  },
+  "cachedDynamicConfigs": {
+    "tengu_1p_event_batch_config": {
+      "scheduledDelayMillis": 5000,
+      "maxExportBatchSize": 200,
+      "maxQueueSize": 8192
+    }
+  },
+  "cachedGrowthBookFeatures": {
+    "tengu_mcp_tool_search": false,
+    "tengu_disable_bypass_permissions_mode": false,
+    "strawberry_granite_flag": "OFF",
+    "persimmon_marble_flag": "OFF",
+    "tengu_tool_pear": false,
+    "tengu_thinkback": false,
+    "tengu_ant_attribution_header_new": true
+  },
+  "userID": "5173432177690e31a44052c30eb92e7a1ed1d854821eac3cd356102e75e4e61a",
+  "firstStartTime": "2026-01-07T16:23:48.082Z",
+  "sonnet45MigrationComplete": true,
+  "opus45MigrationComplete": true,
+  "thinkingMigrationComplete": true
+}

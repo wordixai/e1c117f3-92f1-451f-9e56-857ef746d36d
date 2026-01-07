@@ -2,17 +2,217 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-The @apply directive should not be used with the group utility class.
-*/
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&family=Permanent+Marker&display=swap');
 
 @layer base {
   :root {
-   
+    --background: 50 100% 96%;
+    --foreground: 0 0% 5%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 5%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 5%;
+
+    --primary: 20 100% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 330 100% 65%;
+    --secondary-foreground: 0 0% 100%;
+
+    --accent: 55 100% 55%;
+    --accent-foreground: 0 0% 5%;
+
+    --muted: 40 30% 90%;
+    --muted-foreground: 0 0% 40%;
+
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 10%;
+    --input: 0 0% 90%;
+    --ring: 20 100% 60%;
+
+    /* Pop Art Colors */
+    --pop-orange: 20 100% 60%;
+    --pop-pink: 330 100% 65%;
+    --pop-yellow: 55 100% 55%;
+    --pop-cyan: 180 100% 45%;
+    --pop-black: 0 0% 5%;
+
+    --radius: 0.5rem;
   }
 
   .dark {
+    --background: 0 0% 8%;
+    --foreground: 50 100% 96%;
 
+    --card: 0 0% 12%;
+    --card-foreground: 50 100% 96%;
+
+    --popover: 0 0% 12%;
+    --popover-foreground: 50 100% 96%;
+
+    --muted: 0 0% 20%;
+    --muted-foreground: 0 0% 70%;
+
+    --border: 0 0% 30%;
+    --input: 0 0% 20%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+  }
+}
+
+@layer components {
+  /* Ben-Day Dots Pattern */
+  .dots-pattern {
+    background-image: radial-gradient(circle, hsl(var(--pop-black)) 2px, transparent 2px);
+    background-size: 20px 20px;
+  }
+
+  .dots-pattern-pink {
+    background-image: radial-gradient(circle, hsl(var(--pop-pink) / 0.3) 3px, transparent 3px);
+    background-size: 15px 15px;
+  }
+
+  .dots-pattern-orange {
+    background-image: radial-gradient(circle, hsl(var(--pop-orange) / 0.3) 3px, transparent 3px);
+    background-size: 15px 15px;
+  }
+
+  /* Pop Art Frame */
+  .pop-frame {
+    @apply border-4 border-pop-black shadow-pop transition-all duration-200;
+  }
+
+  .pop-frame:hover {
+    @apply shadow-pop-hover;
+    transform: translate(-4px, -4px);
+  }
+
+  /* Comic Speech Bubble */
+  .speech-bubble {
+    @apply relative bg-card border-4 border-pop-black p-4 rounded-lg;
+  }
+
+  .speech-bubble::after {
+    content: '';
+    @apply absolute -bottom-4 left-8 w-0 h-0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 20px solid hsl(var(--pop-black));
+  }
+
+  .speech-bubble::before {
+    content: '';
+    @apply absolute -bottom-2 left-9 w-0 h-0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 16px solid hsl(var(--card));
+    z-index: 1;
+  }
+
+  /* Pop Button Styles */
+  .btn-pop {
+    @apply font-hand text-lg px-6 py-3 border-4 border-pop-black shadow-pop;
+    @apply transition-all duration-200 cursor-pointer;
+    @apply hover:shadow-pop-hover hover:-translate-x-1 hover:-translate-y-1;
+    @apply active:shadow-none active:translate-x-1 active:translate-y-1;
+  }
+
+  .btn-pop-primary {
+    @apply btn-pop bg-primary text-primary-foreground;
+  }
+
+  .btn-pop-secondary {
+    @apply btn-pop bg-secondary text-secondary-foreground;
+  }
+
+  .btn-pop-accent {
+    @apply btn-pop bg-accent text-accent-foreground;
+  }
+
+  .btn-pop-bounce {
+    @apply btn-pop;
+    animation: bounce 0.6s ease-in-out infinite;
+  }
+
+  .btn-pop-bounce:hover {
+    animation: none;
+  }
+
+  /* Comic Text Effects */
+  .text-pop {
+    @apply font-display tracking-wide;
+    text-shadow:
+      3px 3px 0 hsl(var(--pop-black)),
+      -1px -1px 0 hsl(var(--pop-black)),
+      1px -1px 0 hsl(var(--pop-black)),
+      -1px 1px 0 hsl(var(--pop-black));
+  }
+
+  .text-outline {
+    -webkit-text-stroke: 2px hsl(var(--pop-black));
+    paint-order: stroke fill;
+  }
+
+  /* Gradient Backgrounds */
+  .bg-pop-gradient {
+    background: linear-gradient(135deg,
+      hsl(var(--pop-orange)) 0%,
+      hsl(var(--pop-pink)) 50%,
+      hsl(var(--pop-yellow)) 100%);
+  }
+
+  .bg-split {
+    background: linear-gradient(135deg,
+      hsl(var(--pop-orange)) 50%,
+      hsl(var(--pop-pink)) 50%);
+  }
+
+  /* Starburst Effect */
+  .starburst {
+    background:
+      conic-gradient(
+        hsl(var(--pop-yellow)) 0deg 15deg,
+        hsl(var(--pop-orange)) 15deg 30deg,
+        hsl(var(--pop-yellow)) 30deg 45deg,
+        hsl(var(--pop-orange)) 45deg 60deg,
+        hsl(var(--pop-yellow)) 60deg 75deg,
+        hsl(var(--pop-orange)) 75deg 90deg,
+        hsl(var(--pop-yellow)) 90deg 105deg,
+        hsl(var(--pop-orange)) 105deg 120deg,
+        hsl(var(--pop-yellow)) 120deg 135deg,
+        hsl(var(--pop-orange)) 135deg 150deg,
+        hsl(var(--pop-yellow)) 150deg 165deg,
+        hsl(var(--pop-orange)) 165deg 180deg,
+        hsl(var(--pop-yellow)) 180deg 195deg,
+        hsl(var(--pop-orange)) 195deg 210deg,
+        hsl(var(--pop-yellow)) 210deg 225deg,
+        hsl(var(--pop-orange)) 225deg 240deg,
+        hsl(var(--pop-yellow)) 240deg 255deg,
+        hsl(var(--pop-orange)) 255deg 270deg,
+        hsl(var(--pop-yellow)) 270deg 285deg,
+        hsl(var(--pop-orange)) 285deg 300deg,
+        hsl(var(--pop-yellow)) 300deg 315deg,
+        hsl(var(--pop-orange)) 315deg 330deg,
+        hsl(var(--pop-yellow)) 330deg 345deg,
+        hsl(var(--pop-orange)) 345deg 360deg
+      );
+  }
+
+  /* Price Tag */
+  .price-tag {
+    @apply font-display text-2xl bg-accent text-accent-foreground px-4 py-1;
+    @apply border-2 border-pop-black inline-block rotate-3;
   }
 }
